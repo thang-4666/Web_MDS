@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/fonts/css/all.css" rel="stylesheet" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#3366FF; ">
+        <div class="container" >
+            
+               
+                <div>
+                    <h1 style="color:white; float: left">MDS LOGO</h1>
+                    <div class="btn-group dropdown-menu-left" style="float: right; margin-top: 10px;">
+                        <button class="btn btn-secondary dropdown-toggle" style="background-color:#3366FF; color:white; font-size:25px;" type="button"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            ...
+                        </button>
+                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton" style="width:180px;">
+                            <li class="" <a href="#"><i class=""></i>Họ Tên: Nguyễn Văn Tèo</a> </li>
+                            <li class="" <a href="#"><i class=""></i>Chức vụ: Nhân viên</a> </li>
+
+                            <li class="" <a href="#"><i class="fa fa-question-circle"></i> Phiên bản</a> </li>
+                            <li class="" <a href="#"><i class="fa fa-power-off"></i> Đăng xuất</a> </li>
+                        </div>
+                    </div>
+                </div>
+
+ 
+ 
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    
+        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
