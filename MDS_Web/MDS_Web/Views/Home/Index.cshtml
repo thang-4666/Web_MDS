@@ -8,12 +8,13 @@
         $("#MaHangSX").change(function () {
             $.get("/Home/GetStateList", { MaHangSX: $("#MaHangSX").val() }, function (data) {
                 $("#MaLoaiXe").empty();
-                $('#MaLoaiXe').append("<option value='0'> Chọn loại xe </option>")
+                $('#MaLoaiXe').append("<option value='0' selected> Chọn loại xe </option>")
                 $.each(data, function (index, row) {
                     $("#MaLoaiXe").append("<option value='" + row.MaLoaiXe + "'>" + row.TenLoaiXe + "</option>")
                 });
-                $('#MaCauHoi').append("<label id='MaCauHoi'></label>")
+                $("#MaCauHoi").empty();
             });
+            
         })
     });
 
@@ -24,7 +25,7 @@
                 $.each(data, function (index, row) {
                     $("#MaCauHoi").append("<label id='MaCauHoi'>" + row.CauHoi1 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi1 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi2 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi3 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi4 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi +"' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi5 + "</label> <br />")
                 });
-            });
+            });            
         })
     });
 </script>
@@ -38,9 +39,7 @@
         <h3 style="float:right; padding-top:20px;">0/0 Trang<button style="font-size:20px;">Đến</button></h3>
 
     </div>
-    <div style="">
-
-    </div>
+    
 </div>
 
 <br />
@@ -52,7 +51,7 @@
         </div>
         <div class="col-md-10">
             <select class="col-md-10 form-control" id="MaHangSX"  >
-                <option label="chọn hãng xe" ></option>
+                <option label="chọn hãng xe" value="0"></option>
                 @foreach (var item in hang)
                 {
                     <option value="@item.MaHangSX">@item.TenHangSX</option>
@@ -69,9 +68,9 @@
             <span class="text-danger">(*)</span>
         </div>
         <div class="col-md-12">
-            <select name="MaLoaiXe" class="col-md-10 form-control" id="MaLoaiXe">
+            <select name="MaLoaiXe" class="col-md-10 form-control" id="MaLoaiXe" autofocus>
 
-                <option value="">Chọn hãng xe trước</option>
+                <option value="" >Chọn hãng xe trước</option>
             </select>
 
         </div>
