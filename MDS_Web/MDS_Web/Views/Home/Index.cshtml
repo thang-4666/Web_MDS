@@ -1,16 +1,89 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    var hang = (List<MDS_Web.EF.HANGSX>)ViewBag.MaHangSX;
 }
+<script src="/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#MaHangSX").change(function () {
+            $.get("/Home/GetStateList", { MaHangSX: $("#MaHangSX").val() }, function (data) {
+                $("#MaLoaiXe").empty();
+                $('#MaLoaiXe').append("<option value='0'> Chọn loại xe </option>")
+                $.each(data, function (index, row) {
+                    $("#MaLoaiXe").append("<option value='" + row.MaLoaiXe + "'>" + row.TenLoaiXe + "</option>")
+                });
+                $('#MaCauHoi').append("<label id='MaCauHoi'></label>")
+            });
+        })
+    });
 
-<div>
-    <img src="/Content/img/logo.jpg" style="width:90px; height:90px; float:left; padding-top:20px;"/>
+    $(document).ready(function () {
+        $("#MaLoaiXe").change(function () {
+            $.get("/Home/GetStateList2", { MaLoaiXe: $("#MaLoaiXe").val() }, function (data) {
+                $("#MaCauHoi").empty();
+                $.each(data, function (index, row) {
+                    $("#MaCauHoi").append("<label id='MaCauHoi'>" + row.CauHoi1 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi1 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi2 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi3 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi + "' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi4 + "</label> <br /> <input class='form-check-input' type='radio' name='flexRadioDefault" + row.MaCauHoi +"' id='flexRadioDefault1'> <label class='form-check-label' for='flexRadioDefault1'>" + row.TraLoi5 + "</label> <br />")
+                });
+            });
+        })
+    });
+</script>
+
+
+
+<div class="form-group row">
+    <img src="/Content/img/logo.jpg" style="width:90px; height:90px; float:left; padding-top:20px;" />
     <div>
         <h3 style="padding-top:20px; float:left;">Công ty MDS</h3>
         <h3 style="float:right; padding-top:20px;">0/0 Trang<button style="font-size:20px;">Đến</button></h3>
-        
+
     </div>
     <div style="">
-        
+
     </div>
 </div>
 
+<br />
+<div class="form-inline">
+    <div class="col">
+        <div class="col-md-6 alert-link ">
+            Hãng sản xuất
+            <span class="text-danger">(*)</span>
+        </div>
+        <div class="col-md-10">
+            <select class="col-md-10 form-control" id="MaHangSX"  >
+                <option label="chọn hãng xe" ></option>
+                @foreach (var item in hang)
+                {
+                    <option value="@item.MaHangSX">@item.TenHangSX</option>
+                }
+            </select>
+
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="col-md-4 alert-link">
+            Loại xe
+            <span class="text-danger">(*)</span>
+        </div>
+        <div class="col-md-12">
+            <select name="MaLoaiXe" class="col-md-10 form-control" id="MaLoaiXe">
+
+                <option value="">Chọn hãng xe trước</option>
+            </select>
+
+        </div>
+        <div class="col-lg-12">
+            <label id="MaCauHoi"></label>
+            <br />
+            @*<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">*@
+            @*<label class="form-check-label" for="flexRadioDefault1">
+                Default radio
+            </label>*@
+        </div>        
+    </div>
+
+    
+</div>
